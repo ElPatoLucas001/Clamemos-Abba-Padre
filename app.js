@@ -309,8 +309,8 @@
                         <div><strong>${m.name}</strong><br><small style="color:var(--muted)">${m.teamName} • ${m.age||'-'}</small></div>
                      </div>
                      <div style="display:flex;gap:6px;align-items:center">
-                        <button class="small-btn" data-id="${m.id}" data-action="add">+10</button>
-                        <button class="small-btn" data-id="${m.id}" data-action="sub">−10</button>
+                        <button class="small-btn" data-id="${m.id}" data-action="add">+1</button>
+                        <button class="small-btn" data-id="${m.id}" data-action="sub">−1</button>
                         <button class="small-btn" data-id="${m.id}" data-action="edit">✎</button>
                      </div>`;
       adminResults.appendChild(d);
@@ -417,3 +417,4 @@
   window.openEdit = openEdit;
 
 })();
+
