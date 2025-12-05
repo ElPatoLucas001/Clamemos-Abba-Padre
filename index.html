@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>¡Clamemos: ABBA Padre! — Campamento Taller de Aprendices 2025</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand-left">
+      <div class="brand-title">Taller de Aprendices</div>
+      <div class="brand-sub">Campamento 2025 · ¡Clamemos: Abba Padre!</div>
+    </div>
+
+    <div class="top-photos" aria-hidden="true">
+      <img src="images/foto1.jpg" alt="foto1" />
+      <img src="images/foto2.jpg" alt="foto2" />
+      <img src="images/foto3.jpg" alt="foto3" />
+      <img src="images/foto4.jpg" alt="foto4" />
+    </div>
+
+    <nav class="nav">
+      <button class="nav-btn" data-section="home">Competencia general</button>
+      <button class="nav-btn" data-section="ranking">Ranking de campistas</button>
+      <button class="nav-btn" data-section="mejores">Mejores campistas</button>
+      <button class="nav-btn" data-section="info">Información del campamento</button>
+      <button class="nav-btn" data-section="mantenimiento">Mantenimiento</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- HOME / Competencia general -->
+    <section id="home" class="page">
+      <div class="notice">Hacer las cosas con consciencia ayuda a su equipo</div>
+
+      <div class="panel card">
+        <h2>Tabla de equipos</h2>
+        <table class="teams-table">
+          <thead><tr><th>Equipo</th><th>Puntos</th></tr></thead>
+          <tbody id="teamsTableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="panel card">
+        <h2>Mayor aporte por grupo (podio)</h2>
+        <div id="podium" class="podium"></div>
+      </div>
+
+      <div class="panel card">
+        <h2>Top 3 por equipo</h2>
+        <div id="teamsTop3" class="teams-grid"></div>
+      </div>
+    </section>
+
+    <!-- RANKING -->
+    <section id="ranking" class="page hidden">
+      <h2>Ranking de campistas</h2>
+      <div class="panel card">
+        <input id="searchAll" placeholder="Buscar campista..." class="search-input" />
+        <table class="full-table">
+          <thead><tr><th>#</th><th>Campista</th><th>Equipo</th><th>Puntos</th></tr></thead>
+          <tbody id="rankingBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- MEJORES -->
+    <section id="mejores" class="page hidden">
+      <h2>Mejores campistas</h2>
+      <div class="panel card grid-3">
+        <div>
+          <h3>Mejor campista — Hombre</h3>
+          <div id="bestMale"></div>
+        </div>
+        <div>
+          <h3>Mejor campista — Mujer</h3>
+          <div id="bestFemale"></div>
+        </div>
+        <div>
+          <h3>Mejor campista — Sub 15</h3>
+          <div id="bestSub15"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INFO -->
+    <section id="info" class="page hidden">
+      <h2>Información del campamento</h2>
+      <div class="panel card">
+        <textarea id="campInfo" placeholder="Ingresa aquí la información del organizador..."></textarea>
+        <div class="row">
+          <button id="saveInfo" class="primary">Guardar información</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MANTENIMIENTO (PIN) -->
+    <section id="mantenimiento" class="page hidden">
+      <h2>Mantenimiento (acceso con PIN)</h2>
+
+      <div id="pinArea" class="panel card">
+        <label>Ingrese PIN para acceder:</label>
+        <input id="pinInput" placeholder="PIN" />
+        <div class="row">
+          <button id="pinBtn" class="primary">Entrar</button>
+        </div>
+        <small>PIN requerido para edición</small>
+      </div>
+
+      <div id="adminArea" class="hidden">
+        <div class="panel card">
+          <h3>Gestionar Equipos</h3>
+          <form id="formTeam">
+            <input id="teamName" placeholder="Nombre del equipo" required />
+            <div class="row">
+              <button type="submit" class="primary">Agregar equipo</button>
+              <button id="clearTeam" type="button" class="muted">Limpiar</button>
+            </div>
+          </form>
+          <div id="teamsAdminList"></div>
+        </div>
+
+        <div class="panel card">
+          <h3>Gestionar Campistas</h3>
+          <form id="formMember">
+            <input id="memberName" placeholder="Nombre" required />
+            <input id="memberAge" type="number" min="1" placeholder="Edad" />
+            <select id="memberTeamSelect"></select>
+            <select id="memberGender">
+              <option value="m">Hombre</option>
+              <option value="f">Mujer</option>
+              <option value="o">Otro</option>
+            </select>
+            <input id="memberPhoto" type="file" accept="image/*" />
+            <div class="row">
+              <button type="submit" class="primary">Agregar campista</button>
+              <button id="clearMember" type="button" class="muted">Limpiar</button>
+            </div>
+          </form>
+
+          <div class="panel">
+            <h4>Buscar campista</h4>
+            <input id="adminSearch" placeholder="Buscar por nombre..." />
+            <div id="adminResults"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- modal editar -->
+  <div id="modal" class="modal hidden" role="dialog" aria-hidden="true">
+    <div class="modal-card card">
+      <button id="closeModal" class="close">×</button>
+      <h3>Editar campista</h3>
+      <form id="editForm">
+        <input id="editId" type="hidden" />
+        <input id="editName" />
+        <input id="editAge" type="number" min="1" />
+        <select id="editGender">
+          <option value="m">Hombre</option>
+          <option value="f">Mujer</option>
+          <option value="o">Otro</option>
+        </select>
+        <select id="editTeam"></select>
+        <input id="editPhoto" type="file" accept="image/*" />
+        <div class="row">
+          <button class="primary" type="submit">Guardar</button>
+          <button id="deleteBtn" type="button" class="danger">Eliminar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

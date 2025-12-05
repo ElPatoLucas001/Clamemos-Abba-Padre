@@ -1,0 +1,110 @@
+:root{
+  --bg:#000000;
+  --text:#ffffff;
+  --muted:#bfbfbf;
+  --yellow:#f0c138;      /* botón amarillo */
+  --yellow-bright:#ffd84d;/* contorno brillante */
+  --card:#0f0f10;
+  --accent:#00cfe8; /* celeste/diamante */
+  --radius:12px;
+  --gap:12px;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+.site-header{
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  align-items:center;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.brand-left{ text-align:left; width:100%; max-width:1100px; }
+.brand-title{ font-weight:800; font-size:14px; color:var(--text); }
+.brand-sub{ color:var(--muted); font-size:13px; margin-top:4px; }
+
+.top-photos{
+  display:flex; gap:8px; justify-content:center; width:100%; max-width:1100px;
+}
+.top-photos img{
+  width:160px; height:80px; object-fit:cover; border-radius:8px;
+  border:3px solid rgba(255,255,255,0.06);
+}
+
+.nav{
+  display:flex; gap:10px; flex-wrap:wrap; justify-content:center; width:100%; max-width:1100px;
+}
+.nav-btn{
+  background:var(--yellow);
+  color:#000;
+  border:3px solid var(--yellow-bright);
+  padding:10px 14px;
+  border-radius:12px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+}
+.nav-btn:hover{ transform:translateY(-2px) }
+
+/* layout */
+.container{ max-width:1100px; margin:22px auto; padding:0 14px 80px; }
+
+/* cards */
+.card{ background:var(--card); border-radius:var(--radius); padding:14px; box-shadow: 0 8px 30px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.03); margin-bottom:14px; }
+.panel h2{ margin:6px 0 12px; font-size:18px; color:var(--text); }
+.notice{ background:linear-gradient(90deg, rgba(240,193,56,0.06), rgba(255,255,255,0.02)); padding:12px; border-radius:10px; color:var(--muted); margin-bottom:12px; text-align:center; }
+
+/* tables */
+.teams-table, .full-table{ width:100%; border-collapse:collapse; }
+.teams-table th, .full-table th{ text-align:left; color:var(--muted); font-size:12px; padding:8px 10px; border-bottom:1px solid rgba(255,255,255,0.03) }
+.teams-table td, .full-table td{ padding:10px; color:var(--text); vertical-align:middle; }
+
+/* podium */
+.podium{ display:flex; gap:14px; align-items:end; justify-content:center; flex-wrap:wrap; }
+.podium .place{ width:180px; text-align:center; padding:10px; border-radius:10px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); }
+.place .avatar{ width:72px; height:72px; border-radius:10px; margin:0 auto 8px; display:grid; place-items:center; font-weight:800; color:#000; background:#fff; }
+.place.gold{ border:2px solid #d4af37; box-shadow:0 8px 24px rgba(212,175,55,0.12); }
+.place.silver{ border:2px solid #c0c0c0; box-shadow:0 8px 24px rgba(192,192,192,0.08); }
+.place.bronze{ border:2px solid #b06a08; box-shadow:0 8px 24px rgba(176,106,8,0.06); }
+
+/* teams-grid */
+.teams-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:12px; margin-top:8px; }
+.team-card{ display:flex; gap:10px; align-items:flex-start; padding:10px; border-radius:10px; background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00)); }
+.team-card img{ width:64px; height:64px; object-fit:cover; border-radius:8px; }
+
+/* ranking list styles */
+.search-input{ width:100%; padding:10px; margin-bottom:12px; border-radius:8px; border:none; background:#0b0b0b; color:var(--text) }
+
+/* grid helpers */
+.grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.row{ display:flex; gap:8px; margin-top:10px; align-items:center; }
+.primary{ background:var(--yellow); color:#000; padding:8px 12px; border-radius:8px; border:2px solid var(--yellow-bright); cursor:pointer; font-weight:800 }
+.muted{ background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted); padding:8px 10px; border-radius:8px; cursor:pointer; }
+.danger{ background:#c04848; color:#fff; padding:8px 10px; border-radius:8px; border:none; cursor:pointer; }
+
+/* admin lists */
+.admin-item{ display:flex; justify-content:space-between; padding:8px; border-radius:8px; margin-top:8px; background:rgba(255,255,255,0.02); }
+.small-btn{ padding:6px 8px; border-radius:8px; background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted); cursor:pointer; }
+
+/* modal */
+.modal{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.6); z-index:120; }
+.modal-card{ width:640px; max-width:92%; position:relative; }
+.close{ position:absolute; right:10px; top:6px; background:transparent; border:none; font-size:24px; color:var(--muted); cursor:pointer; }
+
+/* hidden */
+.hidden{ display:none !important; }
+
+/* responsive */
+@media (max-width:720px){
+  .top-photos img{ width:82px; height:48px }
+  .grid-3{ grid-template-columns:1fr; }
+  .nav{ justify-content:space-between; padding:0 6px }
+}
